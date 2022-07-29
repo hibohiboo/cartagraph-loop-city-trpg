@@ -14,7 +14,7 @@ interface Props extends core.StackProps {
   projectId: string
 }
 
-export class AWSCarTaGraphEditorClientStack extends core.Stack {
+export class AWSCarTaGraphLoopCityTRPGClientStack extends core.Stack {
   constructor(scope: Construct, id: string, props: Props) {
     super(scope, id, props)
     // CloudFront オリジン用のS3バケットへの参照を取得
