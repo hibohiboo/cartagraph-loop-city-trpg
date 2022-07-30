@@ -1,7 +1,6 @@
 import React from 'react'
 import { Stage, Layer, Rect } from 'react-konva'
-const canvasWidth = 242
-const canvasHight = 342
+import { canvasHight, canvasWidth } from './components'
 
 const BaseCard: React.FC = ({ children }) => {
   return (

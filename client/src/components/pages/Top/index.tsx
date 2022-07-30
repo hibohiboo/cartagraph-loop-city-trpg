@@ -19,7 +19,9 @@ const Wrapper = styled.div`
 const Top: React.FC = () => {
   return (
     <Wrapper>
-      <SceneCard />
+      <div style={{ paddingLeft: '200px' }}>
+        <SceneCard />
+      </div>
     </Wrapper>
   )
 }
