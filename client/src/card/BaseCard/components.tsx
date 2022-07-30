@@ -204,6 +204,6 @@ const PropetyWithLabel: React.FC<{ label: string; value: string }> = ({
   )
 }
 
-export const TimingProperty: React.FC<{}> = () => {
-  return <PropetyWithLabel label="タイミング" value="幕間" />
+export const TimingProperty: React.FC<{ value: string }> = ({ value }) => {
+  return <PropetyWithLabel label="タイミング" value={value} />
 }
