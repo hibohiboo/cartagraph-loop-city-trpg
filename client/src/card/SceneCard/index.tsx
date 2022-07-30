@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import BaseCard from '../BaseCard'
 // 基本フォントサイズ
 const fontSize = 14
-import { Stage, Layer, Rect } from 'react-konva'
+import { Stage, Layer, Rect, Image } from 'react-konva'
+import { FaTag } from 'react-icons/fa'
+import { IconType } from 'react-icons'
+import { useImage } from '@/domain/konva/useImage'
+import { renderToStaticMarkup } from 'react-dom/server'
+
 const textPagging = 6
 // カードの横幅ガイド src\styles\kakuriyogarden\card\index.scssより
 const leftGap = 5
@@ -22,17 +27,27 @@ const exp = 20 + count
 const mainContent = 20 + exp
 const cellSize = 50
 const SceneCard: React.FC = ({ children }) => {
+  const ref = useRef<IconType>()
+  const svgString = encodeURIComponent(renderToStaticMarkup(<FaTag />))
+  const dataUri = `data:image/svg+xml,${svgString}`
+
+  const [image] = useImage(dataUri)
+
   return (
-    <BaseCard>
-      <Rect
-        x={leftGap}
-        y={pictTop}
-        width={cellSize}
-        height={cellSize}
-        stroke={'black'}
-        strokeWidth={1}
-      />
-    </BaseCard>
+    <>
+      <BaseCard>
+        <Rect
+          x={leftGap}
+          y={pictTop}
+          width={cellSize}
+          height={cellSize}
+          stroke={'black'}
+          strokeWidth={1}
+          fill={'black'}
+        />
+        <Image x={leftGap} y={pictTop} image={image} />
+      </BaseCard>
+    </>
   )
 }
 export default SceneCard
