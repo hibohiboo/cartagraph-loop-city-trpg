@@ -6,10 +6,8 @@ import useRouterApp from '@/hooks/useRouterApp'
 const App: React.FC = () => {
   const { authenticated } = useRouterApp()
   const location = useLocation()
+  console.log(authenticated)
 
-  if (!authenticated) {
-    return <div>loading...</div>
-  }
   if (!location.pathname.startsWith('/')) {
     return <Navigate to="/" replace />
   }
