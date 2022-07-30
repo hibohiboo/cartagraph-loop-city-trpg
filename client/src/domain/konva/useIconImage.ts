@@ -1,8 +1,9 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import * as icons from '@/components/atoms/icon/icons'
 import { useImage } from './useImage'
-type Icons = keyof typeof icons
-export const useIconImage = (icon: Icons, size?: number) => {
+export type UseIconsKey = keyof typeof icons
+
+export const useIconImage = (icon: UseIconsKey, size?: number) => {
   const svgString = encodeURIComponent(
     renderToStaticMarkup(icons[icon]({ size })),
   )
