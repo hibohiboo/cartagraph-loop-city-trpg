@@ -223,3 +223,97 @@ export const LocationProperty: React.FC<{ value: string }> = ({ value }) => {
     <PropetyWithLabel label="場所" icon="MdPlace" value={value} y={place_} />
   )
 }
+const MainContentWrapper: React.FC<{ mainWidth: number; y: number }> = ({
+  children,
+  mainWidth,
+  y,
+}) => {
+  return (
+    <Group>
+      <Rect
+        x={leftGap}
+        y={y}
+        width={mainWidth}
+        height={170}
+        stroke={'black'}
+        strokeWidth={1}
+      />
+      {children}
+    </Group>
+  )
+}
+
+/* 本文 */
+export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
+  effect: value,
+  flavor,
+}) => {
+  const y = place_ + fontSize + 15
+  const yFlavorLine = y + 70
+  const yFlavor = yFlavorLine + 5
+  const mainWidth = 220
+  const textWidth = mainWidth - 10
+
+  let effectStyle = { fontSize: fontSize }
+  if (value?.length > 50) {
+    effectStyle = { fontSize: fontSize * 0.75 }
+  } else if (value?.length > 35) {
+    effectStyle = { fontSize: fontSize * 0.85 }
+  }
+  let flavorStyle = { fontSize: fontSize }
+  if (flavor.length > 50) {
+    flavorStyle = { fontSize: fontSize * 0.75 }
+  } else if (flavor.length > 35) {
+    flavorStyle = { fontSize: fontSize * 0.85 }
+  }
+  return (
+    <MainContentWrapper mainWidth={mainWidth} y={y}>
+      <Text
+        x={leftGap + textPagging}
+        y={y + textPagging}
+        width={textWidth}
+        fontSize={effectStyle.fontSize}
+        fontFamily={family.gothic}
+        text={`${value}`}
+        lineHeight={1.5}
+        shadowEnabled={false}
+      />
+      {/* フレーバー */}
+      <Line
+        x={leftGap}
+        y={yFlavorLine}
+        strokeWidth={1}
+        points={[0, 0, mainWidth, 0]}
+        stroke={'black'}
+        tension={1}
+        dash={[3]}
+      />
+      <Text
+        x={leftGap + textPagging}
+        y={yFlavor}
+        fontSize={flavorStyle.fontSize}
+        fontFamily={family.serif}
+        text={`${flavor}`}
+        lineHeight={1.5}
+        shadowEnabled={false}
+        width={textWidth}
+      />
+    </MainContentWrapper>
+  )
+}
+
+/* 右下 */
+export const RightBottom: React.FC<{ value: string }> = ({ value }) => {
+  return (
+    <Text
+      x={innerLeft}
+      y={mainContent + 125}
+      fontSize={fontSize * 0.6}
+      fontFamily={family.gothic}
+      text={`${value}`}
+      shadowEnabled={false}
+      align={'right'}
+      width={canvasWidth - innerLeft - 10}
+    />
+  )
+}
