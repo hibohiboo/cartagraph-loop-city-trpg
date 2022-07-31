@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Rect, Image, Group, Text, Line } from 'react-konva'
 import { useIconImage, UseIconsKey } from '@/domain/konva/useIconImage'
+
 export const canvasWidth = 242
 export const canvasHight = 342
-
 const family = {
   gothic:
     '"Hiragino Maru Gothic ProN", "BIZ UDGothic", "Meiryo", "YuKyokasho Yoko", "M PLUS Rounded 1c",' + // 丸ゴシック
@@ -249,7 +249,8 @@ export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
   flavor,
 }) => {
   const y = place_ + fontSize + 15
-  const yFlavorLine = y + 70
+  const [effectHeight, setEffectHeight] = useState(70)
+  const yFlavorLine = y + effectHeight + textPagging + 2
   const yFlavor = yFlavorLine + 5
   const mainWidth = 220
   const textWidth = mainWidth - 10
@@ -266,6 +267,7 @@ export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
   } else if (flavor.length > 35) {
     flavorStyle = { fontSize: fontSize * 0.85 }
   }
+
   return (
     <MainContentWrapper mainWidth={mainWidth} y={y}>
       <Text
@@ -277,6 +279,12 @@ export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
         text={`${value}`}
         lineHeight={1.5}
         shadowEnabled={false}
+        ref={(node) => {
+          if (!node) return
+          const height = node.height()
+          if (!height) return
+          setEffectHeight(height)
+        }}
       />
       {/* フレーバー */}
       <Line
