@@ -27,8 +27,8 @@ const attrLabel = 60 + innerLeftLabel + textPagging
 const innerTop = 10
 const rubyTop = innerTop + 15
 const cardName = 13 + rubyTop
-const tagsY = 26 + cardName
-const pictTop = 25 + tagsY
+const yKeywords = 26 + cardName
+const pictTop = 25 + yKeywords
 const propertyTopBurref = 5
 const timing_ = pictTop + propertyTopBurref
 const place_ = propertyTopBurref + timing_ + fontSize + textPagging
@@ -143,12 +143,12 @@ export const KeyWords: React.FC<{ items: string[] }> = ({ items: tags }) => {
       {/* tag */}
       {tags.map((t, i) =>
         i === 0 ? (
-          <TagText key={i} text={t} y={tagsY} x={leftGap} />
+          <TagText key={i} text={t} y={yKeywords} x={leftGap} />
         ) : (
           <TagText
             key={i}
             text={t}
-            y={tagsY}
+            y={yKeywords}
             x={
               leftGap +
               tags
@@ -316,4 +316,15 @@ export const RightBottom: React.FC<{ value: string }> = ({ value }) => {
       width={canvasWidth - innerLeft - 10}
     />
   )
+}
+
+// ----------------------------------------------------------------
+// カードの裏
+// ----------------------------------------------------------------
+export const CardBackImage: React.FC<{ iconKey: UseIconsKey }> = ({
+  iconKey: key,
+}) => {
+  const imageSize = 200
+  const [image] = useIconImage(key, imageSize)
+  return <Image x={leftGap + 10} y={yKeywords} image={image} size={cellSize} />
 }

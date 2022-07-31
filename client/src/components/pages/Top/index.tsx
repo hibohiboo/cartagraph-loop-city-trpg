@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import SceneCard from '@/card/SceneCard'
+import SceneCardFront, { SceneCardBack } from '@/card/SceneCard'
 const Wrapper = styled.div`
   --txt-color: #fff; /* opacity 0.9 のときの #fffの値 */
   --oveflow-color: #010101; /* ブラックスミア防止に#000を避ける */
@@ -20,7 +20,8 @@ const Top: React.FC = () => {
   return (
     <Wrapper>
       <div style={{ paddingLeft: '200px' }}>
-        <SceneCard />
+        <SceneCardFront />
+        <SceneCardBack />
       </div>
     </Wrapper>
   )

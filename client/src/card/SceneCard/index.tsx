@@ -1,6 +1,7 @@
 import React from 'react'
 import BaseCard from '../BaseCard'
 import {
+  CardBackImage,
   CardName,
   CardType,
   IconImage,
@@ -26,7 +27,7 @@ const cardTemplate = {
 `,
 }
 type SceneCardProp = typeof cardTemplate
-const SceneCard: React.FC<{ card?: SceneCardProp }> = ({
+const SceneCardFront: React.FC<{ card?: SceneCardProp }> = ({
   card = cardTemplate,
 }) => {
   return (
@@ -42,4 +43,13 @@ const SceneCard: React.FC<{ card?: SceneCardProp }> = ({
     </BaseCard>
   )
 }
-export default SceneCard
+export default SceneCardFront
+export const SceneCardBack: React.FC = () => {
+  return (
+    <BaseCard>
+      <CardType text="シーン" />
+      <CardBackImage iconKey="MdOndemandVideo" />
+      <RightBottom value="icon: Material Design icons" />
+    </BaseCard>
+  )
+}
