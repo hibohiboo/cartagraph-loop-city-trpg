@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '@/domain/firebase'
-import { spreadsheetApi } from './api/spreadsheet'
+import { spreadsheetApi } from './api/spreadsheetApi'
 import { authSlice } from './slices'
 import { login } from './slices/auth'
 

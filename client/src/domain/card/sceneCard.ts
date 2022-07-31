@@ -1,6 +1,7 @@
 import { createCardWithProp } from './udonariumZip'
 
 export const cardTemplate = {
+  id: 0,
   name: '捜査の基本は脚',
   nameRuby: ' そうさ       きほん      あし',
   keywords: ['情報'],
@@ -16,6 +17,23 @@ export const cardTemplate = {
 }
 export type SceneCardProp = typeof cardTemplate
 
+// カード名	ルビ	キーワード	タイミング	場所	効果	フレーバー
+type Name = string
+type CardName = string
+type Ruby = string
+type Keyword = string
+type Location = string
+type Effect = string
+type Flavor = string
+export type SceneCardSpreadSheetColumns = [
+  Name,
+  CardName,
+  Ruby,
+  Keyword,
+  Location,
+  Effect,
+  Flavor,
+]
 export const createSceneCard = (
   doc: Document,
   stackName: string,

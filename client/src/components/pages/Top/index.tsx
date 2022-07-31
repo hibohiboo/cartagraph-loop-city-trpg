@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { cardTemplate } from '@/domain/card/sceneCard'
-import { useGetSceneCardsApiQuery } from '@/store/api/spreadsheet'
+import { useGetSceneCardsApiQuery } from '@/store/api/spreadsheetApi'
 import SceneCardFront, { SceneCardBack } from '@/card/SceneCard'
 import { useSceneCardHook } from '@/hooks/useSceneCardHook'
 const Wrapper = styled.div`
