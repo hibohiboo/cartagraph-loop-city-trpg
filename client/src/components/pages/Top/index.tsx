@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { cardTemplate } from '@/domain/card/sceneCard'
 import SceneCardFront, { SceneCardBack } from '@/card/SceneCard'
 import { useSceneCardHook } from '@/hooks/useSceneCardHook'
 const Wrapper = styled.div`
@@ -18,7 +19,8 @@ const Wrapper = styled.div`
 `
 
 const Top: React.FC = () => {
-  const hook = useSceneCardHook()
+  const card = cardTemplate
+  const hook = useSceneCardHook(card)
   return (
     <Wrapper>
       <div style={{ paddingLeft: '200px' }}>

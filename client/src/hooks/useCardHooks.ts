@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react'
-import { createSceneCard, SceneCardProp } from '@/domain/card/sceneCard'
-import { createXML } from '@/domain/card/udonariumZip'
+import { createCard, createXML } from '@/domain/card/udonariumZip'
 import { canvasToFile } from '@/domain/udonarium/canvas'
 import { createZip, getDoc } from '@/domain/udonarium/common'
 
-export const useSceneCardHook = (sceneCard: SceneCardProp) => {
+export const useSceneCardHook = (cardName: string) => {
   const [frontCanvas, setFront] = useState<HTMLCanvasElement | null>(null)
   const [backCanvas, setBack] = useState<HTMLCanvasElement | null>(null)
   const createZipHandler = async () => {
@@ -14,14 +13,11 @@ export const useSceneCardHook = (sceneCard: SceneCardProp) => {
     const front = await canvasToFile(frontCanvas)
     const back = await canvasToFile(backCanvas)
 
-    const card = createSceneCard(
-      doc,
-      sceneCard.name,
-      front.identifier,
-      back.identifier,
-    )
-
-    const xml = createXML(sceneCard.name, doc, card)
+    const card = createCard(doc, cardName, front.identifier, back.identifier)
+    // const stackElement = await createCardStackElment(doc, 'シーン')
+    // const root = createCardRoot(doc, [card])
+    // const stack = createCardStackXML('シーンカード', doc, [root])
+    const xml = createXML(cardName, doc, card)
     await createZip([xml, front.file, back.file])
   }
   return {
