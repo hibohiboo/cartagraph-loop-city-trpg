@@ -29,9 +29,10 @@ const rubyTop = innerTop + 15
 const cardName = 13 + rubyTop
 const tagsY = 26 + cardName
 const pictTop = 25 + tagsY
-const timing_ = pictTop + 5
-const range_ = 20 + pictTop + textPagging
-const target_ = 20 + range_
+const propertyTopBurref = 5
+const timing_ = pictTop + propertyTopBurref
+const place_ = propertyTopBurref + timing_ + fontSize + textPagging
+const target_ = 20 + place_
 const count = 20 + target_
 const exp = 20 + count
 const mainContent = 20 + exp
@@ -172,17 +173,19 @@ const PropertyUnderLine: React.FC<{ x: number; y: number }> = ({ x, y }) => (
   />
 )
 
-const PropetyWithLabel: React.FC<{ label: string; value: string }> = ({
-  label,
-  value,
-}) => {
-  const [image] = useIconImage('MdAccessTime')
+const PropetyWithLabel: React.FC<{
+  label: string
+  value: string
+  y: number
+  icon: UseIconsKey
+}> = ({ label, value, y, icon }) => {
+  const [image] = useIconImage(icon)
   return (
     <Group>
-      <Image x={innerLeftIcon} y={timing_} image={image} />
+      <Image x={innerLeftIcon} y={y} image={image} />
       <Text
         x={innerLeftLabel}
-        y={timing_}
+        y={y}
         fontSize={fontSize * 0.8}
         fontFamily={family.gothic}
         text={label}
@@ -190,7 +193,7 @@ const PropetyWithLabel: React.FC<{ label: string; value: string }> = ({
       />
       <Text
         x={attrLabel}
-        y={pictTop + 5}
+        y={y}
         fontSize={fontSize * 0.8}
         fontFamily={family.gothic}
         text={value}
@@ -198,12 +201,25 @@ const PropetyWithLabel: React.FC<{ label: string; value: string }> = ({
       />
       <PropertyUnderLine
         x={innerLeft}
-        y={range_ - Math.ceil(textPagging / 2)}
+        y={y + fontSize + Math.ceil(textPagging / 2)}
       />
     </Group>
   )
 }
 
 export const TimingProperty: React.FC<{ value: string }> = ({ value }) => {
-  return <PropetyWithLabel label="タイミング" value={value} />
+  return (
+    <PropetyWithLabel
+      label="タイミング"
+      value={value}
+      y={timing_}
+      icon="MdAccessTime"
+    />
+  )
+}
+
+export const LocationProperty: React.FC<{ value: string }> = ({ value }) => {
+  return (
+    <PropetyWithLabel label="場所" icon="MdPlace" value={value} y={place_} />
+  )
 }

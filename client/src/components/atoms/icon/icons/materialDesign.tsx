@@ -1,1 +1,1 @@
-export { MdOndemandVideo, MdAccessTime } from 'react-icons/md'
+export { MdOndemandVideo, MdAccessTime, MdPlace } from 'react-icons/md'

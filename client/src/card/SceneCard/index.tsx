@@ -5,6 +5,7 @@ import {
   CardType,
   IconImage,
   KeyWords,
+  LocationProperty,
   TimingProperty,
 } from '../BaseCard/components'
 
@@ -13,6 +14,7 @@ const cardTemplate = {
   nameRuby: ' そうさ       きほん      あし',
   keywords: ['情報'],
   timing: '幕間',
+  location: '事件現場',
 }
 type SceneCardProp = typeof cardTemplate
 const SceneCard: React.FC<{ card?: SceneCardProp }> = ({
@@ -25,6 +27,7 @@ const SceneCard: React.FC<{ card?: SceneCardProp }> = ({
       <CardType text="シーン" />
       <KeyWords items={card.keywords} />
       <TimingProperty value={card.timing} />
+      <LocationProperty value={card.location} />
     </BaseCard>
   )
 }
