@@ -42,6 +42,6 @@ async function _calcSHA256Async(blob: Blob): Promise<string> {
 }
 
 function _calcSHA256(arrayBuffer: ArrayBuffer): string {
-  const wordArray = WordArray.create(arrayBuffer)
+  const wordArray = WordArray.create(arrayBuffer as any) // TODO: 一旦直し方が不明なのでコメントアウト。ArrayBuffefrも対応できるようにしたい
   return SHA256(<any>wordArray).toString()
 }
