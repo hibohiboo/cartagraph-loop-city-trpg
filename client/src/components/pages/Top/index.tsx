@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { cardTemplate } from '@/domain/card/sceneCard'
+import { useGetSceneCardsApiQuery } from '@/store/api/spreadsheet'
 import SceneCardFront, { SceneCardBack } from '@/card/SceneCard'
 import { useSceneCardHook } from '@/hooks/useSceneCardHook'
 const Wrapper = styled.div`
@@ -21,6 +22,7 @@ const Wrapper = styled.div`
 const Top: React.FC = () => {
   const card = cardTemplate
   const hook = useSceneCardHook(card)
+  const result = useGetSceneCardsApiQuery()
   return (
     <Wrapper>
       <div style={{ paddingLeft: '200px' }}>
@@ -28,6 +30,7 @@ const Top: React.FC = () => {
         <SceneCardBack {...hook.backProp} />
         <button onClick={hook.createZipHandler}>zip</button>
       </div>
+      <div>{JSON.stringify(result)}</div>
     </Wrapper>
   )
 }

@@ -1,28 +1,18 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '@/domain/firebase'
-import {
-  initJourneyEntity,
-  persistJourneyMiddleWare,
-} from '@/domain/journey/repository'
-import {
-  authSlice,
-  eventTablesSlice,
-  journeysSlice,
-  paragraphsSlice,
-  previewSlice,
-} from './slices'
+import { spreadsheetApi } from './api/spreadsheet'
+import { authSlice } from './slices'
 import { login } from './slices/auth'
+
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
-    journeys: journeysSlice.reducer,
-    paragraphs: paragraphsSlice.reducer,
-    eventTables: eventTablesSlice.reducer,
-    preview: previewSlice.reducer,
+
+    [spreadsheetApi.reducerPath]: spreadsheetApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(persistJourneyMiddleWare),
+    getDefaultMiddleware().concat(spreadsheetApi.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch
@@ -49,6 +39,3 @@ onAuthStateChanged(auth, async (user) => {
     return await refresh(user.uid)
   }
 })
-
-// 初期値の復元
-initJourneyEntity(store.dispatch)
