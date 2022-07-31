@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SceneCardFront, { SceneCardBack } from '@/card/SceneCard'
+import { useSceneCardHook } from '@/hooks/useSceneCardHook'
 const Wrapper = styled.div`
   --txt-color: #fff; /* opacity 0.9 のときの #fffの値 */
   --oveflow-color: #010101; /* ブラックスミア防止に#000を避ける */
@@ -17,11 +18,13 @@ const Wrapper = styled.div`
 `
 
 const Top: React.FC = () => {
+  const hook = useSceneCardHook()
   return (
     <Wrapper>
       <div style={{ paddingLeft: '200px' }}>
-        <SceneCardFront />
-        <SceneCardBack />
+        <SceneCardFront {...hook.frontProp} />
+        <SceneCardBack {...hook.backProp} />
+        <button onClick={hook.createZipHandler}>zip</button>
       </div>
     </Wrapper>
   )

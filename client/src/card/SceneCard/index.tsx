@@ -27,11 +27,12 @@ const cardTemplate = {
 `,
 }
 type SceneCardProp = typeof cardTemplate
-const SceneCardFront: React.FC<{ card?: SceneCardProp }> = ({
-  card = cardTemplate,
-}) => {
+const SceneCardFront: React.FC<{
+  card?: SceneCardProp
+  callback?: (canvas: HTMLCanvasElement) => void
+}> = ({ card = cardTemplate, callback }) => {
   return (
-    <BaseCard>
+    <BaseCard callback={callback}>
       <CardName name={card.name} ruby={card.nameRuby} />
       <IconImage iconKey="MdOndemandVideo" />
       <CardType text="シーン" />
@@ -44,9 +45,11 @@ const SceneCardFront: React.FC<{ card?: SceneCardProp }> = ({
   )
 }
 export default SceneCardFront
-export const SceneCardBack: React.FC = () => {
+export const SceneCardBack: React.FC<{
+  callback?: (canvas: HTMLCanvasElement) => void
+}> = ({ callback }) => {
   return (
-    <BaseCard>
+    <BaseCard callback={callback}>
       <CardType text="シーン" />
       <CardBackImage iconKey="MdOndemandVideo" />
       <RightBottom value="icon: Material Design icons" />

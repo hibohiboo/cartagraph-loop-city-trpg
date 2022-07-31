@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Stage, Layer, Rect } from 'react-konva'
 import { canvasHight, canvasWidth } from './components'
 
-const BaseCard: React.FC = ({ children }) => {
+const BaseCard: React.FC<{
+  callback?: (canvas: HTMLCanvasElement) => void
+}> = ({ children, callback = () => {} }) => {
+  const canvasRef = useCallback(
+    (node) => {
+      if (!node) return
+      callback(node.getCanvas()._canvas as HTMLCanvasElement)
+    },
+    [callback],
+  )
+
   return (
     <Stage width={canvasWidth} height={canvasHight}>
-      <Layer>
+      <Layer ref={canvasRef}>
         <OutLine width={canvasWidth} height={canvasHight} />
         {children}
       </Layer>

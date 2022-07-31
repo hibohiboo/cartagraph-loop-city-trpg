@@ -27,6 +27,7 @@ export default defineConfig({
             'firebase/analytics',
             'firebase/firestore/lite',
           ],
+          udon: ['file-saver', 'crypto-js'],
         },
       },
     },
