@@ -1,4 +1,4 @@
-import { createEntityAdapter, EntityState } from '@reduxjs/toolkit'
+import { createEntityAdapter } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
   SceneCardProp,
@@ -17,21 +17,26 @@ type SpreadSheetResponse<T> = {
   values: T[]
 }
 
-export const sceneCardAdapter = createEntityAdapter<SceneCardProp>({
-  selectId: ({ id }) => id,
-})
-
 const spreadId = import.meta.env.VITE_SPREAD_SHEET_ID
 const key = import.meta.env.VITE_GPC_API_KEY_FOR_SPREAD_SHEET
 const sheet = 'シーンカード'
 const range = 'A2:H100'
+
+export const sceneCardAdapter = createEntityAdapter<SceneCardProp>({
+  selectId: ({ id }) => id,
+})
+
 export const spreadsheetApi = createApi({
   reducerPath: 'spreadsheet',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://sheets.googleapis.com/v4/spreadsheets/',
   }),
   endpoints: (builder) => ({
-    getSceneCardsApi: builder.query<EntityState<SceneCardProp>, void>({
+    getSceneCardsApi: builder.query<
+      // EntityState<SceneCardProp>
+      SceneCardProp[],
+      void
+    >({
       query: () => `${spreadId}/values/${sheet}!${range}?key=${key}`,
       transformResponse(
         response: SpreadSheetResponse<SceneCardSpreadSheetColumns>,
@@ -51,8 +56,9 @@ export const spreadsheetApi = createApi({
             flavor,
           }),
         )
+        return ret
 
-        return sceneCardAdapter.addMany(sceneCardAdapter.getInitialState(), ret)
+        // return sceneCardAdapter.addMany(sceneCardAdapter.getInitialState(), ret)
       },
     }),
   }),

@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { cardTemplate } from '@/domain/card/sceneCard'
 import { useGetSceneCardsApiQuery } from '@/store/api/spreadsheetApi'
-import SceneCardFront, { SceneCardBack } from '@/card/SceneCard'
-import { useSceneCardHook } from '@/hooks/useSceneCardHook'
+import SceneCardListItem from '@/card/SceneCard/listItem'
 const Wrapper = styled.div`
   --txt-color: #fff; /* opacity 0.9 のときの #fffの値 */
   --oveflow-color: #010101; /* ブラックスミア防止に#000を避ける */
@@ -20,17 +18,15 @@ const Wrapper = styled.div`
 `
 
 const Top: React.FC = () => {
-  const card = cardTemplate
-  const hook = useSceneCardHook(card)
-  const result = useGetSceneCardsApiQuery()
+  const { data } = useGetSceneCardsApiQuery()
   return (
     <Wrapper>
-      <div style={{ paddingLeft: '200px' }}>
-        <SceneCardFront {...hook.frontProp} />
-        <SceneCardBack {...hook.backProp} />
-        <button onClick={hook.createZipHandler}>zip</button>
-      </div>
-      <div>{JSON.stringify(result)}</div>
+      {data &&
+        data.map((card) => {
+          return <SceneCardListItem card={card} key={card.id} />
+        })}
+
+      <div style={{ color: 'black' }}>{JSON.stringify(data)}</div>
     </Wrapper>
   )
 }
