@@ -255,18 +255,20 @@ export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
   const mainWidth = 220
   const textWidth = mainWidth - 10
 
-  let effectStyle = { fontSize: fontSize }
-  if (value?.length > 50) {
-    effectStyle = { fontSize: fontSize * 0.75 }
-  } else if (value?.length > 35) {
-    effectStyle = { fontSize: fontSize * 0.85 }
-  }
-  let flavorStyle = { fontSize: fontSize }
-  if (flavor.length > 50) {
-    flavorStyle = { fontSize: fontSize * 0.75 }
-  } else if (flavor.length > 35) {
-    flavorStyle = { fontSize: fontSize * 0.85 }
-  }
+  // let effectStyle = { fontSize: fontSize }
+  // if (value?.length > 50) {
+  //   effectStyle = { fontSize: fontSize * 0.75 }
+  // } else if (value?.length > 35) {
+  //   effectStyle = { fontSize: fontSize * 0.85 }
+  // }
+  // let flavorStyle = { fontSize: fontSize }
+  // if (flavor.length > 50) {
+  //   flavorStyle = { fontSize: fontSize * 0.75 }
+  // } else if (flavor.length > 35) {
+  //   flavorStyle = { fontSize: fontSize * 0.85 }
+  // }
+  const effectStyle = { fontSize: fontSize * 0.75 }
+  const flavorStyle = effectStyle
 
   return (
     <MainContentWrapper mainWidth={mainWidth} y={y}>
