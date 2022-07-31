@@ -21,16 +21,26 @@ export const createSceneCard = (
   stackName: string,
   frontIdentifier: string,
   backIdentifier: string,
+  card: SceneCardProp,
 ) => {
   const props = [
     {
       title: 'カード',
       props: [
         { label: '種別', value: 'シーンカード' },
-        { label: 'タイミング', value: '幕間' },
+        { label: 'タイミング', value: card.timing, type: '' },
       ],
     },
   ]
+  if (card.keywords.includes('情報')) {
+    props.push({
+      title: '情報',
+      props: [
+        { label: '本文', value: card.effect, type: 'note' },
+        // { label: 'フレーバー', value: card.flavor },
+      ],
+    })
+  }
   return createCardWithProp(
     doc,
     stackName,

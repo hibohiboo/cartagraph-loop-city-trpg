@@ -19,6 +19,7 @@ export const useSceneCardHook = (sceneCard: SceneCardProp) => {
       sceneCard.name,
       front.identifier,
       back.identifier,
+      sceneCard,
     )
 
     const xml = createXML(sceneCard.name, doc, card)
