@@ -1,11 +1,14 @@
-import React, { FocusEventHandler } from 'react'
+import React, { FocusEventHandler, useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form'
+import { Image } from 'react-konva'
+import html2canvas from 'html2canvas'
+import { useImage } from '@/domain/konva/useImage'
 import BaseCard from '../BaseCard'
 import { CardName, CardType, RightBottom } from '../BaseCard/components'
-
 type ActionCardEditFormData = {
   name: string
   nameRuby: string
+  flavor: string
 }
 
 const EditForm: React.FC<{
@@ -36,6 +39,14 @@ const EditForm: React.FC<{
         <label>
           <div>カード名（ルビ）</div>
           <input {...register('nameRuby', { onChange })} />
+        </label>
+        <label>
+          <div>flavor</div>
+          <textarea
+            {...register('flavor', { onChange })}
+            rows={5}
+            style={{ width: '210px' }}
+          />
         </label>
       </form>
     </div>
@@ -70,11 +81,38 @@ const Preview: React.FC<{
   form: UseFormReturn<ActionCardEditFormData>
 }> = ({ form }) => {
   const card = form.getValues()
+  const ref = useRef<HTMLDivElement>(null)
+  const [url, setUrl] = useState('')
+  const [image] = useImage(url)
+  useEffect(() => {
+    ;(async () => {
+      if (ref.current == null) return
+      const canvas = await html2canvas(ref.current)
+      setUrl(canvas.toDataURL('img/png'))
+    })()
+  }, [card.flavor])
+
   return (
-    <BaseCard>
-      <CardType text="アクション" />
-      <CardName name={card.name} ruby={card.nameRuby} />
-      <RightBottom value="icon: Material Design icons" />
-    </BaseCard>
+    <div>
+      <div
+        style={{
+          whiteSpace: 'pre-line',
+          width: '210px',
+          backgroundColor: 'white',
+          color: 'black',
+          fontSize: '12px',
+        }}
+        ref={ref}
+      >
+        {card.flavor}
+      </div>
+      <img src={url} alt="" />
+      <BaseCard>
+        <CardType text="アクション" />
+        <CardName name={card.name} ruby={card.nameRuby} />
+        <Image x={30} y={50} image={image} />
+        <RightBottom value="icon: Material Design icons" />
+      </BaseCard>
+    </div>
   )
 }
