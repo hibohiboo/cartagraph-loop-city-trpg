@@ -3,8 +3,10 @@ import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form'
 import { Image } from 'react-konva'
 import html2canvas from 'html2canvas'
 import { useImage } from '@/domain/konva/useImage'
+import { textToIncludeRubyTagsTextSnitized } from '@/domain/ruby'
 import BaseCard from '../BaseCard'
 import { CardName, CardType, family, RightBottom } from '../BaseCard/components'
+
 type ActionCardEditFormData = {
   name: string
   nameRuby: string
@@ -105,9 +107,10 @@ const Preview: React.FC<{
           fontFamily: family.serif,
         }}
         ref={ref}
-      >
-        {card.flavor}
-      </div>
+        dangerouslySetInnerHTML={{
+          __html: textToIncludeRubyTagsTextSnitized(card.flavor),
+        }}
+      ></div>
       <img src={url} alt="" />
       <BaseCard>
         <CardType text="アクション" />

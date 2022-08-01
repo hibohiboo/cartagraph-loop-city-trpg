@@ -28,6 +28,7 @@ export default defineConfig({
             'firebase/firestore/lite',
           ],
           udon: ['file-saver', 'crypto-js'],
+          canvas: ['sanitize-html', 'html2canvas'],
         },
       },
     },
