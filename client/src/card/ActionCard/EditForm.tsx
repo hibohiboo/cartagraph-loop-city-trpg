@@ -4,7 +4,7 @@ import { Image } from 'react-konva'
 import html2canvas from 'html2canvas'
 import { useImage } from '@/domain/konva/useImage'
 import BaseCard from '../BaseCard'
-import { CardName, CardType, RightBottom } from '../BaseCard/components'
+import { CardName, CardType, family, RightBottom } from '../BaseCard/components'
 type ActionCardEditFormData = {
   name: string
   nameRuby: string
@@ -87,7 +87,8 @@ const Preview: React.FC<{
   useEffect(() => {
     ;(async () => {
       if (ref.current == null) return
-      const canvas = await html2canvas(ref.current)
+      // そのままだとぼやけるので、2倍に出力して0.5に縮小する
+      const canvas = await html2canvas(ref.current, { width: 210, scale: 2 })
       setUrl(canvas.toDataURL('img/png'))
     })()
   }, [card.flavor])
@@ -100,7 +101,8 @@ const Preview: React.FC<{
           width: '210px',
           backgroundColor: 'white',
           color: 'black',
-          fontSize: '12px',
+          fontSize: '14px',
+          fontFamily: family.serif,
         }}
         ref={ref}
       >
@@ -110,7 +112,7 @@ const Preview: React.FC<{
       <BaseCard>
         <CardType text="アクション" />
         <CardName name={card.name} ruby={card.nameRuby} />
-        <Image x={30} y={50} image={image} />
+        <Image x={30} y={50} image={image} scaleX={0.5} scaleY={0.5} />
         <RightBottom value="icon: Material Design icons" />
       </BaseCard>
     </div>

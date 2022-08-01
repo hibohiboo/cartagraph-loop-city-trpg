@@ -4,7 +4,7 @@ import { useIconImage, UseIconsKey } from '@/domain/konva/useIconImage'
 
 export const canvasWidth = 242
 export const canvasHight = 342
-const family = {
+export const family = {
   gothic:
     '"Hiragino Maru Gothic ProN", "BIZ UDGothic", "Meiryo", "YuKyokasho Yoko", "M PLUS Rounded 1c",' + // 丸ゴシック
     '"Hiragino Sans W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif', // 角ゴシック
