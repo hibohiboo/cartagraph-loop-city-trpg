@@ -30,6 +30,9 @@ const EditForm: React.FC<{
   const onChange: FocusEventHandler<HTMLInputElement> = () => {
     handleSubmit(onSubmit)()
   }
+  const onBlur: FocusEventHandler<HTMLInputElement> = () => {
+    handleSubmit(onSubmit)()
+  }
   return (
     <div>
       <form>
@@ -45,7 +48,7 @@ const EditForm: React.FC<{
         <label>
           <div>flavor</div>
           <textarea
-            {...register('flavor', { onChange })}
+            {...register('flavor', { onBlur })}
             rows={5}
             style={{ width: '210px' }}
           />
@@ -64,7 +67,6 @@ export const ActionCardEditForm: React.FC = () => {
   // form.setValue('title', journey.title)
 
   const submitForm = (data: ActionCardEditFormData) => {
-    console.log(data)
     // dispatch(
     //   journeysSlice.actions.journeyUpdate({
     //     ...data,
@@ -97,21 +99,23 @@ const Preview: React.FC<{
 
   return (
     <div>
-      <div
-        style={{
-          whiteSpace: 'pre-line',
-          width: '210px',
-          backgroundColor: 'white',
-          color: 'black',
-          fontSize: '14px',
-          fontFamily: family.serif,
-        }}
-        ref={ref}
-        dangerouslySetInnerHTML={{
-          __html: textToIncludeRubyTagsTextSnitized(card.flavor),
-        }}
-      ></div>
-      <img src={url} alt="" />
+      <div style={{ width: '1px', height: '1px', overflow: 'hidden' }}>
+        <div
+          style={{
+            whiteSpace: 'pre-line',
+            width: '210px',
+            backgroundColor: 'white',
+            color: 'black',
+            fontSize: '14px',
+            fontFamily: family.serif,
+          }}
+          ref={ref}
+          dangerouslySetInnerHTML={{
+            __html: textToIncludeRubyTagsTextSnitized(card.flavor),
+          }}
+        ></div>
+        <img src={url} alt="" />
+      </div>
       <BaseCard>
         <CardType text="アクション" />
         <CardName name={card.name} ruby={card.nameRuby} />

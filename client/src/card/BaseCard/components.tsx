@@ -234,7 +234,7 @@ const MainContentWrapper: React.FC<{ mainWidth: number; y: number }> = ({
         x={leftGap}
         y={y}
         width={mainWidth}
-        height={170}
+        height={175}
         stroke={'black'}
         strokeWidth={1}
       />
@@ -244,10 +244,10 @@ const MainContentWrapper: React.FC<{ mainWidth: number; y: number }> = ({
 }
 
 /* 本文 */
-export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
-  effect: value,
-  flavor,
-}) => {
+export const SceneMainContent: React.FC<{
+  effect: string
+  flavor?: HTMLImageElement
+}> = ({ effect: value, flavor }) => {
   const y = place_ + fontSize + 15
   const [effectHeight, setEffectHeight] = useState(70)
   const yFlavorLine = y + effectHeight + textPagging + 2
@@ -298,7 +298,7 @@ export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
         tension={1}
         dash={[3]}
       />
-      <Text
+      {/* <Text
         x={leftGap + textPagging}
         y={yFlavor}
         fontSize={flavorStyle.fontSize}
@@ -307,6 +307,13 @@ export const SceneMainContent: React.FC<{ effect: string; flavor: string }> = ({
         lineHeight={1.5}
         shadowEnabled={false}
         width={textWidth}
+      /> */}
+      <Image
+        x={leftGap + textPagging}
+        y={yFlavor}
+        image={flavor}
+        scaleX={0.5}
+        scaleY={0.5}
       />
     </MainContentWrapper>
   )
