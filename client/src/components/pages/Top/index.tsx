@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useGetSceneCardsApiQuery } from '@/store/api/spreadsheetApi'
-import SceneCardListItem from '@/card/SceneCard/listItem'
+import { ActionCardEditForm } from '@/card/ActionCard/EditForm'
+import SceneCardList from '@/card/SceneCard/SceneList'
 const Wrapper = styled.div`
   --txt-color: #fff; /* opacity 0.9 のときの #fffの値 */
   --oveflow-color: #010101; /* ブラックスミア防止に#000を避ける */
@@ -18,15 +18,10 @@ const Wrapper = styled.div`
 `
 
 const Top: React.FC = () => {
-  const { data } = useGetSceneCardsApiQuery()
   return (
     <Wrapper>
-      {data &&
-        data.map((card) => {
-          return <SceneCardListItem card={card} key={card.id} />
-        })}
-
-      <div style={{ color: 'black' }}>{JSON.stringify(data)}</div>
+      <SceneCardList />
+      <ActionCardEditForm />
     </Wrapper>
   )
 }
