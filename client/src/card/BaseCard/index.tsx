@@ -15,7 +15,7 @@ const BaseCard: React.FC<{
 
   return (
     <Stage width={canvasWidth} height={canvasHight}>
-      <Layer ref={canvasRef}>
+      <Layer ref={canvasRef} listening={false}>
         <OutLine width={canvasWidth} height={canvasHight} />
         {children}
       </Layer>
