@@ -48,7 +48,7 @@ const EditForm: React.FC<{
         <label>
           <div>flavor</div>
           <textarea
-            {...register('flavor', { onBlur })}
+            {...register('flavor', {})}
             rows={5}
             style={{ width: '210px' }}
           />
@@ -88,6 +88,7 @@ const Preview: React.FC<{
   const ref = useRef<HTMLDivElement>(null)
   const [url, setUrl] = useState('')
   const [image] = useImage(url)
+  const watchFlavor = form.watch('flavor')
   useEffect(() => {
     ;(async () => {
       if (ref.current == null) return
@@ -95,7 +96,7 @@ const Preview: React.FC<{
       const canvas = await html2canvas(ref.current, { width: 210, scale: 2 })
       setUrl(canvas.toDataURL('img/png'))
     })()
-  }, [card.flavor])
+  }, [watchFlavor])
 
   return (
     <div>
@@ -111,7 +112,7 @@ const Preview: React.FC<{
           }}
           ref={ref}
           dangerouslySetInnerHTML={{
-            __html: textToIncludeRubyTagsTextSnitized(card.flavor),
+            __html: textToIncludeRubyTagsTextSnitized(watchFlavor),
           }}
         ></div>
         <img src={url} alt="" />

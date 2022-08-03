@@ -35,7 +35,7 @@ const SceneCardListItem: React.FC<{
       <button onClick={hook.createZipHandler}>
         ユドナリウムのカードをダウンロード
       </button>
-      {/* 非表示のテキスト作成部分 */}
+      {/* 非表示のテキスト作成部分. display:noneだと画像作成されない */}
       <div style={{ width: '1px', height: '1px', overflow: 'hidden' }}>
         <FlavorDiv
           ref={hook.flavor.ref}
