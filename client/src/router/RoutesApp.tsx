@@ -1,5 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import ActionCard from '@/components/pages/ActionCard'
+import SceneCardListPage from '@/components/pages/SceneCardList'
 import Top from '@/components/pages/Top'
 import useRouterApp from '@/hooks/useRouterApp'
 
@@ -14,6 +16,8 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Top />} />
+      <Route path="/scenes" element={<SceneCardListPage />} />
+      <Route path="/actions" element={<ActionCard />} />
     </Routes>
   )
 }
