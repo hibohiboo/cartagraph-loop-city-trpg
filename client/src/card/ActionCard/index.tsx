@@ -9,6 +9,7 @@ import {
   SceneMainContent,
   TimingProperty,
 } from '../BaseCard/components'
+import RubyTextImage from '../BaseCard/RubyTextImage'
 import { ActionIconImage } from './components'
 
 const ActionCardFront: React.FC<{
@@ -23,8 +24,8 @@ const ActionCardFront: React.FC<{
       <CardType text={`アクション/${card.subType}`} />
       <KeyWords items={card.keywords} />
       <TimingProperty value={card.timing} />
-
       <SceneMainContent effect={card.effect} flavor={flavor} />
+      <RubyTextImage flavor="test" />
       <RightBottom value="icon: Material Design icons" />
     </BaseCard>
   )

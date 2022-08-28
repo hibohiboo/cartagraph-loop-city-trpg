@@ -9,6 +9,21 @@
     <link rel="apple-touch-icon" href="/logo.svg" />
     <link rel="manifest" href="/manifest.json" />
     <title>箱庭ループ日常維持TRPG</title>
+    <style>
+      #forHtml2CanvasElementContainer div {
+        white-space: pre-line;
+        width: 210px;
+        background-color: white;
+        color: black;
+        font-size: 12px;
+        font-family: '游明朝', YuMincho, 'Hiragino Mincho ProN W3',
+          'ヒラギノ明朝 ProN W3', 'Hiragino Mincho ProN', 'HG明朝E',
+          'ＭＳ Ｐ明朝', 'ＭＳ 明朝', serif;
+      }
+      #forHtml2CanvasElementContainer rt {
+        font-size: 8px;
+      }
+    </style>
   </head>
   <body
     style="
@@ -53,6 +68,10 @@
         >
       </div>
     </footer>
+    <div
+      style="width: 1px; height: 1px; overflow: hidden"
+      id="forHtml2CanvasElementContainer"
+    ></div>
     <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
