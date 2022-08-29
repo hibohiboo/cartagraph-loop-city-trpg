@@ -7,7 +7,6 @@ export const actionCardTemplate = {
   nameRuby: '',
   keywords: ['情報'],
   timing: '幕間',
-  location: '現場',
   effect: `情報カードを1つ獲得する。`,
   flavor: `「ほらよ」 
 折りたたんだ紙束をテーブルに。
@@ -17,7 +16,15 @@ export const actionCardTemplate = {
 }
 export type ActionCardProp = typeof actionCardTemplate
 
-// カード名	ルビ	キーワード	タイミング	場所	効果	フレーバー
+export const actionSubTypes = {
+  info: '情報',
+  physical: '肉体',
+} as const
+type ActionSubTypes = typeof actionSubTypes
+type ActionSubTypeKeys = keyof ActionSubTypes
+
+// 種別 カード名	ルビ	キーワード	タイミング	場所	効果	フレーバー
+type SubType = ActionSubTypes[ActionSubTypeKeys]
 type Name = string
 type CardName = string
 type Ruby = string
@@ -25,7 +32,8 @@ type Keyword = string
 type Location = string
 type Effect = string
 type Flavor = string
-export type SceneCardSpreadSheetColumns = [
+export type ActionCardSpreadSheetColumns = [
+  SubType,
   Name,
   CardName,
   Ruby,
@@ -45,7 +53,7 @@ export const createSceneCard = (
     {
       title: 'カード',
       props: [
-        { label: '種別', value: 'シーンカード' },
+        { label: '種別', value: 'アクションカード' },
         { label: 'タイミング', value: card.timing, type: '' },
       ],
     },
@@ -53,10 +61,7 @@ export const createSceneCard = (
   if (card.keywords.includes('情報')) {
     props.push({
       title: '情報',
-      props: [
-        { label: '本文', value: card.effect, type: 'note' },
-        // { label: 'フレーバー', value: card.flavor },
-      ],
+      props: [{ label: '本文', value: card.effect, type: 'note' }],
     })
   }
   return createCardWithProp(

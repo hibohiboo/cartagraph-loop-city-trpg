@@ -1,6 +1,10 @@
 import { createEntityAdapter } from '@reduxjs/toolkit'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
+  ActionCardProp,
+  ActionCardSpreadSheetColumns,
+} from '@/domain/card/actionCard'
+import {
   SceneCardProp,
   SceneCardSpreadSheetColumns,
 } from '@/domain/card/sceneCard'
@@ -61,6 +65,31 @@ export const spreadsheetApi = createApi({
         // return sceneCardAdapter.addMany(sceneCardAdapter.getInitialState(), ret)
       },
     }),
+    getActionCardsApi: builder.query<ActionCardProp[], void>({
+      query: () =>
+        `${spreadId}/values/${'アクションカード'}!${range}?key=${key}`,
+      transformResponse(
+        response: SpreadSheetResponse<ActionCardSpreadSheetColumns>,
+      ) {
+        const ret = response.values.map(
+          (
+            [subType, name, nameRuby, keywords, timing, effect, flavor],
+            id,
+          ) => ({
+            id,
+            subType,
+            name,
+            nameRuby,
+            keywords: keywords.split(','),
+            timing,
+            effect,
+            flavor,
+          }),
+        )
+        return ret
+      },
+    }),
   }),
 })
-export const { useGetSceneCardsApiQuery } = spreadsheetApi
+export const { useGetSceneCardsApiQuery, useGetActionCardsApiQuery } =
+  spreadsheetApi

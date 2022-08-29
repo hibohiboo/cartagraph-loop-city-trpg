@@ -12,5 +12,11 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: 100%;
   padding-bottom: 100px;
+  a {
+    color: #8ab4f8;
+  }
+  a:visited {
+    color: #c58ef9;
+  }
 `
 export default Wrapper
