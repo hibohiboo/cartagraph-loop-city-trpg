@@ -9,14 +9,12 @@ import {
   SceneMainContent,
   TimingProperty,
 } from '../BaseCard/components'
-import RubyTextImage from '../BaseCard/RubyTextImage'
 import { ActionIconImage } from './components'
 
 const ActionCardFront: React.FC<{
   card?: ActionCardProp
   callback?: (canvas: HTMLCanvasElement) => void
-  flavor?: HTMLImageElement
-}> = ({ card = actionCardTemplate, callback, flavor }) => {
+}> = ({ card = actionCardTemplate, callback }) => {
   return (
     <BaseCard callback={callback}>
       <CardName name={card.name} ruby={card.nameRuby} />
@@ -24,8 +22,7 @@ const ActionCardFront: React.FC<{
       <CardType text={`アクション/${card.subType}`} />
       <KeyWords items={card.keywords} />
       <TimingProperty value={card.timing} />
-      <SceneMainContent effect={card.effect} flavor={flavor} />
-      <RubyTextImage flavor="test" />
+      <SceneMainContent effect={card.effect} flavor={card.flavor} />
       <RightBottom value="icon: Material Design icons" />
     </BaseCard>
   )

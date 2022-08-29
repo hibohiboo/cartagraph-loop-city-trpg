@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Rect, Image, Group, Text, Line } from 'react-konva'
 import { useIconImage, UseIconsKey } from '@/domain/konva/useIconImage'
+import RubyTextImage from './RubyTextImage'
 
 export const canvasWidth = 242
 export const canvasHight = 342
@@ -246,7 +247,7 @@ const MainContentWrapper: React.FC<{ mainWidth: number; y: number }> = ({
 /* 本文 */
 export const SceneMainContent: React.FC<{
   effect: string
-  flavor?: HTMLImageElement
+  flavor: string
 }> = ({ effect: value, flavor }) => {
   const y = place_ + fontSize + 15
   const [effectHeight, setEffectHeight] = useState(70)
@@ -268,7 +269,7 @@ export const SceneMainContent: React.FC<{
   //   flavorStyle = { fontSize: fontSize * 0.85 }
   // }
   const effectStyle = { fontSize: fontSize * 0.75 }
-  const flavorStyle = effectStyle
+  // const flavorStyle = effectStyle
 
   return (
     <MainContentWrapper mainWidth={mainWidth} y={y}>
@@ -308,12 +309,11 @@ export const SceneMainContent: React.FC<{
         shadowEnabled={false}
         width={textWidth}
       /> */}
-      <Image
+      <RubyTextImage
         x={leftGap + textPagging}
         y={yFlavor}
-        image={flavor}
-        scaleX={0.5}
-        scaleY={0.5}
+        flavor={flavor}
+        width={210}
       />
     </MainContentWrapper>
   )

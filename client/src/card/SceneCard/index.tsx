@@ -16,8 +16,7 @@ import {
 const SceneCardFront: React.FC<{
   card?: SceneCardProp
   callback?: (canvas: HTMLCanvasElement) => void
-  flavor?: HTMLImageElement
-}> = ({ card = cardTemplate, callback, flavor }) => {
+}> = ({ card = cardTemplate, callback }) => {
   return (
     <BaseCard callback={callback}>
       <CardName name={card.name} ruby={card.nameRuby} />
@@ -26,7 +25,7 @@ const SceneCardFront: React.FC<{
       <KeyWords items={card.keywords} />
       <TimingProperty value={card.timing} />
       <LocationProperty value={card.location} />
-      <SceneMainContent effect={card.effect} flavor={flavor} />
+      <SceneMainContent effect={card.effect} flavor={card.flavor} />
       <RightBottom value="icon: Material Design icons" />
     </BaseCard>
   )
