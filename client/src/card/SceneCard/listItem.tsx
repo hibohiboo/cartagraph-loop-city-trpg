@@ -26,11 +26,7 @@ const SceneCardListItem: React.FC<{
   return (
     <div style={{ display: 'flex' }}>
       <SceneCardBack {...hook.backProp} />
-      <SceneCardFront
-        card={card}
-        {...hook.frontProp}
-        flavor={hook.flavor.image}
-      />
+      <SceneCardFront card={card} {...hook.frontProp} />
 
       <button onClick={hook.createZipHandler}>
         ユドナリウムのカードをダウンロード
