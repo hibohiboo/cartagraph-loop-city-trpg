@@ -19,6 +19,9 @@ const Top: React.FC = () => {
             カード一覧 - spread sheet
           </a>
         </li>
+        <li>
+          <Link to="/a">ブギーポップ因数分解</Link>
+        </li>
       </ul>
       <div style={{ display: 'flex' }}>
         <SceneCardFront />

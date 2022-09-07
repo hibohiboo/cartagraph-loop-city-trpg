@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import BoogieAnalytics from '@/components/pages/BoogieAnalytics'
 import SceneCardListPage from '@/components/pages/SceneCardList'
 import Top from '@/components/pages/Top'
 import ActionCardList from '@/card/ActionCard/ActionList'
@@ -18,6 +19,7 @@ const App: React.FC = () => {
       <Route path="/" element={<Top />} />
       <Route path="/scenes" element={<SceneCardListPage />} />
       <Route path="/actions" element={<ActionCardList />} />
+      <Route path="/a" element={<BoogieAnalytics />} />
     </Routes>
   )
 }
