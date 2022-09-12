@@ -42,7 +42,7 @@ export type ActionCardSpreadSheetColumns = [
   Effect,
   Flavor,
 ]
-export const createSceneCard = (
+export const createActionCard = (
   doc: Document,
   stackName: string,
   frontIdentifier: string,
