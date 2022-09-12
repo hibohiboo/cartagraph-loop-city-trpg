@@ -13,6 +13,9 @@ const BoogieAnalytics: React.FC = () => {
           <SceneCardFront card={sceneIntroduction} />
           <PlaceCardFront />
         </div>
+        <div style={{ display: 'flex' }}>
+          <PlaceCardFront card={placeIntroduction2} />
+        </div>
       </section>
     </Wrapper>
   )
@@ -32,4 +35,13 @@ const sceneIntroduction = {
 「見たな」
 天井に張り付いた殺戮者。男でも女でもない生き物が、少年に跳びかかった。
 `,
+}
+const placeIntroduction2 = {
+  id: 0,
+  name: '県立深陽学園',
+  nameRuby: 'けんりつしんようがくえん',
+  keywords: ['学校'],
+  effect: `高校。中ぐらいの進学校。`,
+  flavor: `生活指導は教師の仕事。
+  風紀委員はただの飾り。`,
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { PlaceCardProp, placeCardTemplate } from '@/domain/card/placeCard'
+import { ActionCardProp } from '@/domain/card/actionCard'
+import { placeCardTemplate } from '@/domain/card/placeCard'
 import BaseCard from '../BaseCard'
 import {
   CardName,
@@ -11,7 +12,7 @@ import {
 } from '../BaseCard/components'
 
 const PlaceCardFront: React.FC<{
-  card?: PlaceCardProp
+  card?: ActionCardProp
   callback?: (canvas: HTMLCanvasElement) => void
 }> = ({ card = placeCardTemplate, callback }) => {
   return (
