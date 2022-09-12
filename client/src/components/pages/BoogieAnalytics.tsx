@@ -1,5 +1,6 @@
 import React from 'react'
 import Wrapper from '@/components/atoms/app/Wrapper'
+import NpcCardFront from '@/card/NpcCard'
 import PlaceCardFront from '@/card/PlaceCard'
 import SceneCardFront from '@/card/SceneCard'
 
@@ -15,6 +16,7 @@ const BoogieAnalytics: React.FC = () => {
         </div>
         <div style={{ display: 'flex' }}>
           <PlaceCardFront card={placeIntroduction2} />
+          <NpcCardFront />
         </div>
       </section>
     </Wrapper>
