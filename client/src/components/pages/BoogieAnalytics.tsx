@@ -1,5 +1,6 @@
 import React from 'react'
 import Wrapper from '@/components/atoms/app/Wrapper'
+import InfoCardFront from '@/card/InfoCard'
 import NpcCardFront from '@/card/NpcCard'
 import PlaceCardFront from '@/card/PlaceCard'
 import SceneCardFront from '@/card/SceneCard'
@@ -17,6 +18,8 @@ const BoogieAnalytics: React.FC = () => {
         <div style={{ display: 'flex' }}>
           <PlaceCardFront card={placeIntroduction2} />
           <NpcCardFront />
+          <InfoCardFront card={infoIntroduction2} />
+          <InfoCardFront />
         </div>
       </section>
     </Wrapper>
@@ -43,7 +46,17 @@ const placeIntroduction2 = {
   name: '県立深陽学園',
   nameRuby: 'けんりつしんようがくえん',
   keywords: ['学校'],
-  effect: `高校。中ぐらいの進学校。`,
+  effect: `高校。県の中ぐらいの進学校。`,
+  flavor: ``,
+}
+
+const infoIntroduction2 = {
+  id: 0,
+  name: '風紀委員',
+  subType: '組織',
+  nameRuby: '',
+  keywords: ['情報', '学校'],
+  effect: ``,
   flavor: `生活指導は教師の仕事。
   風紀委員はただの飾り。`,
 }

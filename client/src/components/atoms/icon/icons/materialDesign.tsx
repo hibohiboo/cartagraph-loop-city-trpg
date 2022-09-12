@@ -5,4 +5,5 @@ export {
   MdSimCardDownload,
   MdDirectionsRun,
   MdPerson,
+  MdOutlineDescription,
 } from 'react-icons/md'

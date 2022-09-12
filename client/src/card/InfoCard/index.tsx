@@ -1,6 +1,5 @@
 import React from 'react'
-import { ActionCardProp } from '@/domain/card/actionCard'
-import { placeCardTemplate } from '@/domain/card/placeCard'
+import { InfoCardProp, infoCardTemplate } from '@/domain/card/infoCard'
 import BaseCard from '../BaseCard'
 import {
   CardName,
@@ -11,16 +10,16 @@ import {
   SceneMainContent,
 } from '../BaseCard/components'
 
-const PlaceCardFront: React.FC<{
-  card?: ActionCardProp
+const InfoCardFront: React.FC<{
+  card?: InfoCardProp
   callback?: (canvas: HTMLCanvasElement) => void
-}> = ({ card = placeCardTemplate, callback }) => {
+}> = ({ card = infoCardTemplate, callback }) => {
   return (
     <BaseCard callback={callback}>
       <CardName name={card.name} ruby={card.nameRuby} />
 
-      <IconImage iconKey="MdPlace" />
-      <CardType text={`場所`} />
+      <IconImage iconKey="MdOutlineDescription" />
+      <CardType text={`情報/${card.subType}`} />
       <KeyWords items={card.keywords} />
 
       <SceneMainContent effect={card.effect} flavor={card.flavor} />
@@ -28,4 +27,4 @@ const PlaceCardFront: React.FC<{
     </BaseCard>
   )
 }
-export default PlaceCardFront
+export default InfoCardFront
