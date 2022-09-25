@@ -319,6 +319,20 @@ export const SceneMainContent: React.FC<{
   )
 }
 
+// -------------------------------------------------------
+export const Word: React.FC<{ word: string }> = ({ word }) => {
+  return (
+    <Group>
+      <Text
+        fontSize={fontSize * 0.8}
+        text={word}
+        y={yKeywords + 5}
+        x={leftGap}
+      />
+    </Group>
+  )
+}
+
 /* 右下 */
 export const RightBottom: React.FC<{ value: string }> = ({ value }) => {
   return (
