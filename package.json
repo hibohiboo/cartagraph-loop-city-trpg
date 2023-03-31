@@ -9,7 +9,8 @@
     "test-watch": "jest --watchAll",
     "serve": "vite preview",
     "eslint": "eslint .",
-    "eslint-fix": "eslint . --fix"
+    "eslint-fix": "eslint . --fix",
+    "export-eslint": "eslint --print-config client/src/index.ts > doc/data/eslint-setting.json"
   },
   "author": "hibohiboo",
   "license": "MIT",

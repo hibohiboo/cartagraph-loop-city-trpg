@@ -1,0 +1,103 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch name to trigger deployment
+      - id/350
+    paths:
+      - .github/workflows/**
+      - doc/** # documentsフォルダ内が更新されたときに実施
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # rlespinasse/drawio-export-action@v2 を使うときに指定が必要
+
+      - name: Create gh-pages-dir
+        run: |
+          mkdir -p ./docs/publish
+
+# draw.io
+      # - name: Export draw.io
+      #   uses: rlespinasse/drawio-export-action@v2
+      #   with:
+      #     path: documents/draw.io
+      #     format: png
+      #     output: ../../docs/publish/drawio
+      #     transparent: true
+
+# npm 準備
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+
+# # REST スキーマ
+
+      # - name: OpenAPI Setup
+      #   run: npm ci
+      #   working-directory: ./documents/api-schema
+
+      # - name: OpenAPI Make
+      #   run: npm run redoc
+      #   working-directory: ./documents/api-schema
+
+
+      # - name: OpenAPI Move files
+      #   run: |
+      #     mkdir -p ./docs/publish/api-schema
+      #     mv ./documents/api-schema/dist/index.html ./docs/publish/api-schema/
+
+# # GraphQL スキーマ
+
+      # - name: GraphQL Setup
+      #   run: npm ci
+      #   working-directory: ./documents/graphql-schema
+
+      # - name: GraphQL Make
+      #   run: npm run build
+      #   working-directory: ./documents/graphql-schema
+
+
+      # - name: GraphQL Move files
+      #   run: |
+      #     mkdir -p ./docs/publish/graphql-schema
+      #     mv ./documents/graphql-schema/public/* ./docs/publish/graphql-schema/
+
+# markdown to HTML
+# pandoc
+      - uses: docker://pandoc/core:2.18
+        with:
+          args: >- # allows you to break string into multiple lines
+            --standalone
+            --output=docs/index.html
+            doc/index.md
+
+# # component catalog
+
+#       - name: StoryBook Setup
+#         run: npm ci
+#         working-directory: ./documents/components-catalog
+
+#       - name: StoryBook Make
+#         run: npx build-storybook -c ./.storybook -o ./components-catalog
+#         working-directory: ./documents/components-catalog
+
+#       - name: StoryBook Move files
+#         run: |
+#           mkdir -p ./docs/publish/components-catalog
+#           mv ./documents/components-catalog/components-catalog ./docs/publish/
+
+
+# デプロイ
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+
+
