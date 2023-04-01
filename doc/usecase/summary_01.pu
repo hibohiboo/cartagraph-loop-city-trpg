@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+actor TRPGプレイヤー as g
+package 開発者 as P {
+  actor システムデザイナー as c
+  actor "ワールドデザイナー" as fc
+}
+package TRPGシステム「ループ駆動のCI/CD」 as R {
+  usecase "ゲームを知る" as UC1
+  usecase "コンポーネントを作る" as UC2
+  usecase "セッションをする" as UC3
+  usecase "ルールの整備" as UC4
+}
+fc --> UC4
+g --> UC1
+g --> UC2
+g --> UC3
+@enduml
