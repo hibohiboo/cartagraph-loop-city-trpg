@@ -1,0 +1,34 @@
+@startuml
+
+:セッション参加者: as SUser
+:シナリオ作成者: as SMaker
+
+
+:プレイヤー: as PL
+:ゲームマスター: as GM
+
+
+left to right direction
+
+package TRPGシステム「ループ駆動のCI/CD」 as R {
+  usecase "ゲームを知る" as UC1
+  usecase "ルールの参照" as UC2
+  usecase "キャラクターを作る" as UC3
+  usecase "シナリオを作る" as UC4
+  usecase "キャラクターを閲覧する" as UC5
+  usecase "シナリオを閲覧する" as UC6
+}
+
+SUser --> UC1
+SUser --> UC2
+SUser --> UC5
+PL --> UC3
+SMaker --> UC4
+SMaker --> UC2
+SMaker --> UC1
+SMaker --> UC6
+GM --> UC6
+SUser  <|-- PL
+SUser  <|-- GM
+
+@enduml
