@@ -1,0 +1,32 @@
+@startuml
+:TRPGユーザ: as User
+:セッション参加者: as SUser
+:シナリオ作成者: as SMaker
+:素材作成者: as MMaker
+
+:プレイヤー: as PL
+:ゲームマスター: as GM
+:観客: as Viwer
+
+:立ち絵: as FMMaker
+:背景: as BGMMaker
+:BGM: as BGMMMaker
+:世界設定: as WMaker
+:追加データ: as DataMaker
+:部屋: as RoomMaker
+
+User <|-- SUser
+User <|-- SMaker
+User <|-- MMaker
+SUser  <|-- PL
+SUser  <|-- GM
+SUser  <|-- Viwer
+
+MMaker <|-- FMMaker
+MMaker <|-- BGMMaker
+MMaker <|-- BGMMMaker
+MMaker <|-- WMaker
+MMaker <|-- DataMaker
+MMaker <|-- RoomMaker
+
+@enduml
