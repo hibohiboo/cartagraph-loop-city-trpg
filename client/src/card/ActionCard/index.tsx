@@ -1,5 +1,6 @@
 import React from 'react'
 import { ActionCardProp, actionCardTemplate } from '@/domain/card/actionCard'
+import { ActionIconImage } from './components'
 import BaseCard from '../BaseCard'
 import {
   CardName,
@@ -9,7 +10,6 @@ import {
   SceneMainContent,
   TimingProperty,
 } from '../BaseCard/components'
-import { ActionIconImage } from './components'
 
 const ActionCardFront: React.FC<{
   card?: ActionCardProp

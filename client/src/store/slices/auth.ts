@@ -27,7 +27,7 @@ export const login = createAsyncThunk<AuthState, PayLoad>(
   async (req, thunkAPI) => {
     console.log('test')
     try {
-      console.log('test', req)
+      console.log('req', req)
       if (req.uid == null) {
         console.log('signinbefore', auth)
         const response = await signInAnonymously(auth)
